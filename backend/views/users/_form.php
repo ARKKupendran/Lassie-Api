@@ -40,8 +40,6 @@ use yii\widgets\ActiveForm;
 <div class="box-body">
 
     <?php
-    if (isset($resp['message']))
-        echo "<div class='errorMessage'>" . $resp['message'] . "</div>";
     $form = ActiveForm::begin([
                 'id' => 'active-form',
                 'enableClientValidation' => true,
