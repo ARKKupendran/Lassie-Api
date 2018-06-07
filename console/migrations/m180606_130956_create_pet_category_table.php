@@ -17,6 +17,7 @@ class m180606_130956_create_pet_category_table extends Migration
             'category_name' => $this->string()->notNull(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->Null(),
+            'status' => $this->smallInteger()->notNull()->defaultValue(1),
         ]);
     }
 
