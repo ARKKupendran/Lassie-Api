@@ -26,10 +26,7 @@ use yii\widgets\ActiveForm;
 </div>
 */?>
 <div class="box-body">
-
     <?php
-    if (isset($resp['message']))
-        echo "<div class='errorMessage'>" . $resp['message'] . "</div>";
     $form = ActiveForm::begin([
                 'id' => 'pet-category-form',
                 'enableClientValidation' => true,
@@ -44,9 +41,14 @@ use yii\widgets\ActiveForm;
                 ],
                     ]
     );
+     if ($model->isNewRecord) {
+        $model->status = true;
+     }
     ?>
     
 <?= $form->field($model, 'category_name')->textInput(['maxlength' => true])->label('Category Name<span class="required-label"></span>'); ?>
+
+<?= $form->field($model, 'status')->checkbox(['label' => ('Active ')])->label('Status') ?>
 <div class="box-footer">
         <div class="col-sm-0 col-sm-offset-2">
             <?= Html::submitButton($model->isNewRecord ? 'Create' : 'Update', ['class' => $model->isNewRecord ? 'btn btn-success' : 'btn btn-primary']) ?> &nbsp;&nbsp;
