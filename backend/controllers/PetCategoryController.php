@@ -83,7 +83,8 @@ class PetCategoryController extends Controller
         $model->created_at = time();
         $model->updated_at = time();
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->pet_cat_id]);
+            //return $this->redirect(['view', 'id' => $model->pet_cat_id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
