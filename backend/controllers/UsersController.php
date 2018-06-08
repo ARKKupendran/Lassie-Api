@@ -133,6 +133,7 @@ class UsersController extends Controller
         $uploadDir = 'frontend/web/uploads/images/';
         $old_password=$model->password;
         $pimage=$model->profile_image;
+        $imgpath='';
         $email=$model->email;
         if ($model->load(Yii::$app->request->post()))
         {
@@ -141,6 +142,7 @@ class UsersController extends Controller
                 $model->password=$old_password;
             else    
                 $model->password=$model->setPassword($new_password);
+            
             if ($profile_image = UploadedFile::getInstance($model, 'profile_image')){ 
                 $randno = rand(11111, 99999);
                 $imgpath = $basePath.$uploadDir. $randno . $profile_image->name;
@@ -155,9 +157,10 @@ class UsersController extends Controller
                 if(!empty($imgpath))
                 {
                     $profile_image->saveAs($imgpath);
-                    if($pimage!="default.png")
+                    if($pimage!="default.png" && $pimage!='')
                     {
                         $oldimg=$basePath.$uploadDir.$pimage;
+                        if(file_exists($oldimg))
                         unlink($oldimg);
                     }
                 }

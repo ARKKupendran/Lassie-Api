@@ -31,7 +31,7 @@ class PetCategory extends ActiveRecord
         return [
             [['category_name'], 'required'],
             [['created_at', 'updated_at','status'], 'integer'],
-            [['category_name'], 'string', 'max' => 255],
+            [['category_name','category_image'], 'string', 'max' => 255],
         ];
     }
 
@@ -43,6 +43,7 @@ class PetCategory extends ActiveRecord
         return [
             'pet_cat_id' => 'Category ID',
             'category_name' => 'Category Name',
+            'category_image' => 'Category Image',
             'created_at' => 'Created At',
             'updated_at' => 'Updated At',
             'status' => 'Status',

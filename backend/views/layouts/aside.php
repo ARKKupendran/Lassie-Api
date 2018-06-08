@@ -28,6 +28,8 @@ use yii\widgets\Menu;
                     'items' => [
                             ['label' => '<i class="fa fa-circle-o"></i>All Categories', 'url' => ['pet-category/index']],
                             ['label' => '<i class="fa fa-circle-o"></i>Add Category', 'url' => ['pet-category/create']],
+                            ['label' => '<i class="fa fa-circle-o"></i>All Breads', 'url' => ['pet-breed/index']],
+                            ['label' => '<i class="fa fa-circle-o"></i>Add Bread', 'url' => ['pet-breed/create']],
                     ]],
                    /* ['label' => '<i class="fa fa-th"></i> <span>Product Management</span><i class="fa fa-angle-left pull-right"></i>',
                     'url' => ['#'],

@@ -43,10 +43,24 @@ use yii\widgets\ActiveForm;
     );
      if ($model->isNewRecord) {
         $model->status = true;
+        //$model->category_image="default.jpg";
+        $catimg_lable="Default Category Picture";
      }
+     else{
+         $catimg_lable="Current Category Picture";
+     }
+     
+     $model->category_image=(empty($model->category_image)) ? "default.jpg" : $model->category_image;
+     $img = "/uploads/petcat/" . $model->category_image;
     ?>
     
 <?= $form->field($model, 'category_name')->textInput(['maxlength' => true])->label('Category Name<span class="required-label"></span>'); ?>
+    
+<?= $form->field($model, 'category_image')->fileInput(); ?>
+    
+<div class="form-group field-pimg">
+        <label class="col-sm-2 control-label"><?php echo $catimg_lable;?></label><div class="col-sm-5"><?php echo Html::img($img, ['width' => '80px']); ?></div>
+</div>    
 
 <?= $form->field($model, 'status')->checkbox(['label' => ('Active ')])->label('Status') ?>
 <div class="box-footer">

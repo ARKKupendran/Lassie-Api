@@ -15,6 +15,7 @@ class m180606_130956_create_pet_category_table extends Migration
         $this->createTable('pet_category', [
             'pet_cat_id' => $this->primaryKey(),
             'category_name' => $this->string()->notNull(),
+            'category_image'=> $this->string(255)->Null(),
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->Null(),
             'status' => $this->smallInteger()->notNull()->defaultValue(1),

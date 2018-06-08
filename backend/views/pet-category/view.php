@@ -30,6 +30,19 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             'pet_cat_id',
             'category_name',
+            [
+                'attribute' => 'category_image',
+                'format' => 'html',
+                'label' => 'Category Picture',
+                'value' => function ($data) {
+                    if(empty($data['category_image']))
+                        $petcat="default.jpg";
+                    else
+                        $petcat=$data['category_image'];
+                    return Html::img('/uploads/petcat/'.$petcat, ['width' => '60px','height'=>'60px']);
+                },
+                'headerOptions' => ['width' => '100'],
+            ],
             //'created_at',
             //'updated_at',
             [
@@ -44,7 +57,14 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             [
                 'class' => 'backend\components\StatusColumn',
+                'format' => 'html',
                 'attribute' => 'status',
+                'value' => function ($data) {
+                    if($data['status']==1)
+                        return '<span style="font-size:85%;" class="label success"> Active </span>';
+                    else
+                        return '<span style="font-size:85%;" class="label failure"> In Active </span>';
+                }
             ],
         ],
     ]) ?>

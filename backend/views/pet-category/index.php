@@ -43,6 +43,19 @@ $this->params['breadcrumbs'][] = $this->title;
                             'label'=>'Pets Category',
                             'headerOptions' => ['width' => '200'],
                         ],
+                        [
+                            'attribute' => 'category_image',
+                            'format' => 'html',
+                            'label' => 'Category Picture',
+                            'value' => function ($data) {
+                                if(empty($data['category_image']))
+                                    $petcat="default.jpg";
+                                else
+                                    $petcat=$data['category_image'];
+                                return "<center>".Html::img('/uploads/petcat/'.$petcat, ['width' => '60px','height'=>'60px'])."</center>";
+                            },
+                            'headerOptions' => ['width' => '100'],
+                        ],
                         //'created_at',
                         //'updated_at',
                         [
