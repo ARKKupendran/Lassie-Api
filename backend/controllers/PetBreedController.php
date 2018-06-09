@@ -2,12 +2,13 @@
 
 namespace backend\controllers;
 
-use Yii;
 use common\models\PetBreed;
 use common\models\PetBreedSearch;
+use Yii;
+use yii\filters\AccessControl;
+use yii\filters\VerbFilter;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
 
 /**
  * PetBreedController implements the CRUD actions for PetBreed model.
@@ -20,6 +21,20 @@ class PetBreedController extends Controller
     public function behaviors()
     {
         return [
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                        [
+                        'actions' => [''],
+                        'allow' => true,
+                    ],
+                        [
+                        'actions' => ['index', 'create', 'update', 'view', 'delete'],
+                        'allow' => true,
+                        'roles' => ['@'],
+                    ],
+                ],
+            ],
             'verbs' => [
                 'class' => VerbFilter::className(),
                 'actions' => [
@@ -65,9 +80,12 @@ class PetBreedController extends Controller
     public function actionCreate()
     {
         $model = new PetBreed();
+        $model->created_at = time();
+        $model->updated_at = time();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('create', [
@@ -87,7 +105,8 @@ class PetBreedController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            //return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [
